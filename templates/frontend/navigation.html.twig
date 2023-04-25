@@ -1,0 +1,19 @@
+<div id="nav">
+    <ul>
+        <li id="guide"><a href="/dtox/guide"></a></li>
+        <li id="tech"><a href="/dtox/tech"></a></li>
+        <li id="member"{% if nav_current == 'member' %} class="active"{% endif %}><a href="{{ path('app_member') }}"></a></li>
+        <li id="info"><a href="/dtox/info"></a></li>
+        <li id="link"><a href="/dtox/links"></a></li>
+    </ul>
+</div><!-- end.div nav -->
+
+{% if lnav_current %}
+<div id="lnav">
+    <ul>
+      <li{% if lnav_current == 'member_top' %} class="active"{% endif %}><a href="{{ path('app_member') }}">トップ</a></li>
+      <li{% if lnav_current == 'technology_search' %} class="active"{% endif %}><a href="{{ path('app_technology_search') }}">技術検索</a></li>
+      <li{% if lnav_current == 'technology_post' %} class="active"{% endif %}><a href="/dtox/guide/tech">技術受付ポスト</a></li>
+    </ul>
+</div>
+{% endif %}

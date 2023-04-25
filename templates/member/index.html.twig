@@ -1,0 +1,44 @@
+{% extends 'frontend/base.html.twig' %}
+{% set nav_current = 'member' %}
+{% set lnav_current = 'member_top' %}
+
+{% block title %}会員向けページトップ{% endblock %}
+
+{% block body %}
+<div class="title_bk">
+    <div id="title" class="title">
+        <h2><img src="{{ asset('images/mem_title.png') }}" width="980" height="45" alt="会員向けページ" class="pngfix" /></h2>
+    </div>
+</div>
+
+<div id="content">
+    <div class="cont_inn">
+
+        {% set topicPath = {'':'会員向けページ'} %}
+        {% include 'frontend/topic_path.html.twig' %}
+
+        <div class="article">
+            <div class="subtitle_block">
+                <h3 class="subtitle">会員向けページ</h3>
+            </div>
+            <div class="section">
+                <p>現在、技術の登録申請を受け付けております。<br />また、登録済みの技術を検索・閲覧いただけます。</p>
+                <div class="mem_top float_l">
+                    <h4><img src="{{ asset('images/mem_techTitle.gif') }}" width="740" height="60" alt="技術" /></h4>
+                    <ul>
+                        <li><a href="{{ path('app_technology_search') }}"><img src="{{ asset('images/bt_techSearch_off.gif') }}" width="310" height="90" alt="技術検索" /></a></li>
+                        <li><a href="/dtox/guide/tech"><img src="{{ asset('images/bt_techPost_off.gif') }}" width="310" height="90" alt="受付ポスト" /></a></li>
+                        <li class="link"><a href="/dtox/guide/tech">&#9658;技術の登録申請書類はこちら</a></li>
+                    </ul>
+                </div>
+                <?php if ($sf_user->hasCredential('technology_post')): ?>
+                <p class="mem_link"><a href="{{ path('app_technology_post') }}">&#9658;管理者用：技術課題登録</a></p>
+                <?php endif ?>
+            </div><!-- end.div section -->
+        </div><!-- end.div article -->
+
+        {% include 'frontend/go_top.html.twig' %}
+
+    </div><!-- end.div cont_inn -->
+</div><!-- end.div content -->
+{% endblock %}

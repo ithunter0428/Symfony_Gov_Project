@@ -1,0 +1,100 @@
+{% extends 'frontend/base.html.twig' %}
+{% set nav_current = 'member' %}
+{% set lnav_current = 'technology_search' %}
+
+{% block title %}技術検索{% endblock %}
+
+{% block body %}
+<div class="title_bk">
+    <div id="title" class="title">
+        <h2><img src="{{ asset('images/techSearch_title.png') }}" width="980" height="45" alt="技術検索" class="pngfix" /></h2>
+    </div>
+</div>
+
+<div id="content">
+    <div class="cont_inn">
+
+        {% set topicPath = {'/member':'会員向けページ', '/':'技術検索', '':'技術検索結果一覧'} %}
+        {% include 'frontend/topic_path.html.twig' %}
+
+        <div class="article">
+            <div class="subtitle_block">
+                <h3 class="subtitle">技術検索結果一覧</h3>
+                {% if 0 < technology.count %}
+                <ul class="mem_backLink">
+                    <li><a href="<?php echo url_for('technology_search', $queryValues->getRawValue()) ?>">技術検索に戻る</a></li>
+                </ul>
+                {% endif %}
+            </div>
+
+            <div class="section">
+
+              {% if technology.count %}
+                <div class="mem_uiblock">
+                    <form id="sort_form" action="<?php echo url_for('technology_list') ?>" method="get">
+                        <?php foreach ($queryValues->getRawValue() as $name => $value): ?>
+                        <?php if ('sort' == $name) continue; ?>
+                        <?php renderHidden($name, $value) ?>
+                        <?php endforeach; ?>
+                        <ul class="mem_rUI">
+                            <li>表示順：
+                                <?php echo $form['sort'] ?>
+                            </li>
+                            <li><a href="javascript:void(0);" class="button_print"><img src="{{ asset('images/icon_print_off.gif') }}" width="60" height="35" alt="印刷" /></a></li>
+                            <li><a href="<?php echo url_for('technology_list_csv', $queryValues->getRawValue()) ?>"><img src="{{ asset('images/icon_csv_off.gif') }}" width="92" height="35" alt="CSV出力" /></a></li>
+                        </ul>
+                    </form>
+                </div><!--end div.mem_uiblock -->
+
+                {% for tech in technology %}
+                {% set id = tech.id %}
+                <table class="mem_rtb">
+                    <tr>
+                        <th class="num">{{ attribute(referenceId, id) }}</th>
+                        <th{% if attribute(updating, id) %} class="update"{% endif %}>
+                          <a href="{{ path('app_technology', {id: attribute(referenceId, id)}) }}">{{ tech.name }}</a></th>
+                    </tr>
+                    <tr>
+                        <td>申請機関名</td>
+                        <td>{% if tech.applicantOrganWebUrl %}<a href="{{ tech.applicantOrganWebUrl }}" target="_blank" class="exlink">{{ tech.applicantOrganName }}</a>{% else %}{{ tech.applicantOrganName }}{% endif %}</td>
+                    </tr>
+                    {% if attribute(updating, id) == false %}
+                    <tr>
+                        <td>概要</td>
+                        <td>{{ attribute(summary, id) | escape }}</td>
+                    </tr>
+                    <tr>
+                        <td>備考</td>
+                        <td>{{ attribute(phaseText, id) }}　／　適用の制約条件　{{ attribute(restrictionText, id) }}　／　実証試験　{{ attribute(verificationTestText, id) }}　／　適用実績　{{ attribute(achievementText, id) }}　／　専門家評価　{{ attribute(expertEvaluationText, id) }}</td>
+                    </tr>
+                    {% endif %}
+                </table>
+                {% endfor %}
+
+                {% include 'technology/pager.html.twig' %}
+
+              {% else %}
+                <div class="mem_block">
+                    <div class="mem_search">
+                        <table class="mem_center">
+                            <tr>
+                                <td>
+                                    <p>該当する技術個票が見つかりません。検索条件を変更して再度検索してください。</p>
+                                    <p><a href="<?php echo url_for('technology_search', $queryValues->getRawValue()) ?>" class="arrowR">技術検索ページへ</a></p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div><!-- end.div reg_policy -->
+                </div><!-- end.div reg_block -->
+
+              {% endif %}
+            </div><!-- end.div section -->
+
+        </div><!-- end.div article -->
+
+
+        {% include 'frontend/go_top.html.twig' %}
+
+    </div><!-- end.div cont_inn -->
+</div><!-- end.div content -->
+{% endblock %}

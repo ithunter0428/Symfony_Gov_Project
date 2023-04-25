@@ -1,0 +1,46 @@
+{% extends 'frontend/base.html.twig' %}
+{% set nav_current = '' %}
+{% set lnav_current = '' %}
+
+{% block title %}パスワードを忘れた方へ{% endblock %}
+
+{% block body %}
+<div class="title_bk">
+    <div id="title" class="title">
+        <h2><img src="{{ asset('images/reset_title.png') }}" width="980" height="45" alt="パスワードを忘れた方へ" class="pngfix" /></h2>
+    </div>
+</div>
+
+<div id="content">
+    <div class="cont_inn">
+
+        {% set topicPath = {'':'パスワードを忘れた方へ'} %}
+        {% include 'frontend/topic_path.html.twig' %}
+
+        <div class="article">
+            <div class="subtitle_block">
+                <h3 class="subtitle">パスワードを忘れた方へ</h3>
+            </div>
+            <div class="section">
+
+                <div class="reg_block">
+                    <div class="reg_policy">
+                        <table class="reg_center">
+                            <tr>
+                                <td>
+                                    <p>パスワードの変更が完了しました。</p>
+                                    <p><a href="<?php echo url_for('login') ?>" class="arrowR">ログイン画面へ</a></p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div><!-- end.div reg_policy -->
+                </div><!-- end.div reg_block -->
+
+            </div><!-- end.div section -->
+        </div><!-- end.div article -->
+
+        {% include 'frontend/go_top.html.twig' %}
+
+    </div><!-- end.div cont_inn -->
+</div><!-- end.div content -->
+{% endblock %}

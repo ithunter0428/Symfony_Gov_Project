@@ -1,0 +1,26 @@
+{% if 0 < technology.count %}
+<ul class="pagination">
+  {% if false == pager.isFirstPage %}
+    <li class="previous"><a href="{{ path('app_technology_list') }}">&#171;&nbsp;最初</a></li>
+    <li><a href="{{ path('app_technology_list', {page: pager.previousPage}) }}">&#60;&nbsp;前</a></li>
+  {% endif %}
+{#
+  <?php if (1 != $links[0]): ?>
+    <li>...</li>
+  <?php endif; ?>
+ #}
+  {% for number in pager.loopBetween %}
+    <li{% if number == pager.currentPage %} class="active"{% endif %}><a href="{{ path('app_technology_list', {page: number}) }}">{{ number }}</a></li>
+  {% endfor %}
+{#
+  <?php if ($pager->getLastPage() != $pager->getCurrentMaxLink()): ?>
+    <li>...</li>
+  <?php endif; ?>
+#}
+  {% if false == pager.isLastPage %}
+    <li><a href="{{ path('app_technology_list', {page: pager.nextPage}) }}">次&nbsp;&#62;</a></li>
+    <li class="next"><a href="{{ path('app_technology_list', {page: pager.totalPage}) }}">最後&nbsp;&#187;</a></li>
+  {% endif %}
+</ul>
+<p class="pagenation_info">{{ pager.firstIndice }} ～{{ pager.lastIndice }}件（全{{ technology.count }}件）</p>
+{% endif %}

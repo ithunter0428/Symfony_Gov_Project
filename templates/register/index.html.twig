@@ -1,0 +1,89 @@
+{% extends 'frontend/base.html.twig' %}
+{% set nav_current = '' %}
+{% set lnav_current = '' %}
+
+{% block title %}会員登録{% endblock %}
+
+{% block body %}
+<div class="title_bk">
+    <div id="title" class="title">
+        <h2><img src="{{ asset('images/reg_title.png') }}" width="980" height="45" alt="会員登録" class="pngfix" /></h2>
+    </div>
+</div>
+
+<div id="content">
+    <div class="cont_inn">
+
+        {% set topicPath = {'/dtox/register':'会員登録', '':'STEP1 利用規約及び個人情報のお取扱いについて'} %}
+        {% include 'frontend/topic_path.html.twig' %}
+
+        <div class="article">
+            <div class="subtitle_block">
+                <h3 class="subtitle">STEP1  利用規約及び個人情報のお取扱いについて</h3>
+            </div>
+           	<div class="section">
+                <p>会員登録では、ユーザーの個人情報をご入力いただくことになります。個人情報のお取扱いについてご同意いただける場合には、「同意する」ボタンをクリックしていただくと、入力画面へと進みます。</p>
+                <div class="reg_block">
+                    <h4 class="reg_title reg_step1"><span>STEP1　会員登録の同意</span></h4>
+                    <div class="reg_policy">
+
+<p>除染・中間貯蔵関連技術探索サイトの利用にあたっては、予め会員登録を行っていただく必要があります。利用を希望される場合には、技術の登録申請及び登録技術の活用において遵守すべき事項等を定めた利用規約に同意し履行することを確約した上で、会員登録を行って下さい。</p>
+<p>また、この除染・中間貯蔵関連技術探索サイトは、環境省からの委託契約に基づき中間貯蔵・環境安全事業株式会社（JESCO）（以下、当社）が運営しております。会員登録される方の個人情報のお取扱いについては、 当社の「個人情報保護」に準じて適切に管理いたしますので、ご同意の上、会員登録を行ってください。</p>
+
+{% set urlJesconet = 'http://www.jesconet.co.jp/' %}
+{% set mailJesco = 'jesco@jesconet.co.jp' %}
+{% set mailJescopcb = 'jescopcb@jesconet.co.jp' %}
+<p>個人情報保護</p>
+<dl class="reg_polist">
+	<dt>1．基本的考え方</dt>
+    <dd>中間貯蔵・環境安全事業株式会社では、中間貯蔵・環境安全事業株式会社ホームページ（<a href="{{ urlJesconet }}" target="_blank">{{ urlJesconet }}</a>以下「当サイト」という）において提供するサービス（ホームページによる情報提供、各種ご意見の受付等）の円滑な実施に必要な範囲で、当サイトを利用される皆様の情報を収集しています。収集した情報は利用目的の範囲内で適切に取り扱います。</dd>
+	<dt>2．収集する情報の範囲</dt>
+    <dd>
+        （1）当サイトでは、インターネットドメイン名、IPアドレス、当サイトの閲覧等の情報を自動的に収集します。当サイトの提供するページには、一部クッキー（サーバ側で利用者を識別するために、サーバから利用者のブラウザに送信され、利用者のコンピュータに蓄積される情報）を使用する場合があります。ただし、クッキーを使用して利用者個人を識別できる情報は一切収集しません。また、利用者のブラウザの設定によりクッキーの機能を無効にすることもできます。<br />
+        （2）電子メールで<a href="mailto:{{ mailJesco }}">{{ mailJesco }}</a>や<a href="mailto:{{ mailJescopcb }}">{{ mailJescopcb }}</a>にご意見等をお送りいただいた場合には、差出人のメールアドレス、ヘッダ情報、タイトル、本文が受信側に表示されます。<br />
+        （3）中間貯蔵・環境安全事業株式会社が主催する公開の委員会等の傍聴者受付の際、住所、氏名、勤務先、電話番号などの記入をお願いしています。
+    </dd>
+	<dt>3．利用目的</dt>
+    <dd>
+        （1）2．(1)で収集した情報は、当サイトが提供するサービスを円滑に実施するための参考として利用します。<br />
+        （2）2．(2)で収集したご意見等は、今後の事業の参考とさせていただきます。「タイトル、メールアドレス、本文」については、ご意見に対する返信を行う場合に利用することがあります。さらに、ご意見等の内容に応じて、「FAQ（よくある質問）」コーナーの内容作成の参考資料として利用する場合があります。この場合、個人や所属が特定されない表現とします。<br />
+        （3）2．（3）で収集した情報は、傍聴券・傍聴者抽選漏れ通知の送付や、会議の開催の際の連絡や入場受付整理に利用します。
+    </dd>
+	<dt>4．利用及び提供の制限</dt>
+    <dd>中間貯蔵・環境安全事業株式会社では、法令に基づく開示要請があった場合、不正アクセス等の違法行為があった場合その他特別の理由のある場合を除き、収集した情報を3の利用目的以外の目的のために自ら利用し、又は第三者に提供いたしません。</dd>
+	<dt>5．安全確保の措置</dt>
+    <dd>中間貯蔵・環境安全事業株式会社は、収集した情報の漏えい、滅失又はき損の防止その他収集した情報の適切な管理のために必要な措置を講じます。 </dd>
+	<dt>6．個人情報の開示、訂正、削除について</dt>
+    <dd>ご提供いただいた個人情報の開示、訂正または削除を希望される場合は、ご本人であることを確認させていただいたうえ合理的な範囲内で対応させていただきます。</dd>
+	<dt>7．適用範囲</dt>
+    <dd>本プライバシーポリシーは、当サイト内において適用されます。</dd>
+</dl>
+
+{% set mailDtox = 'dtox@jesconet.co.jp' %}
+<ul class="reg_list">
+	<li class="btxt">個人情報に関するお問合せ窓口</li>
+	<li>中間貯蔵・環境安全事業株式会社　中間貯蔵事業部　技術課</li>
+	<li>105-0014　東京都港区芝1-7-17</li>
+    <li>電話：03-6635-4902（直通）、FAX：03-6635-4900、Email：<a href="mailto:{{ mailDtox }}">{{ mailDtox }}</a></li>
+</ul>
+
+{% set urlEnvPrivacy = 'http://www.env.go.jp/privacy.html' %}
+<p>環境省のプライバシーポリシー<br />
+URL: <a href="{{ urlEnvPrivacy }}" target="_blank" class="exlink">{{ urlEnvPrivacy }}</a></p>
+
+                    </div><!-- end.div reg_policy -->
+
+                    <ul class="reg_fbt">
+                        <li><a href="{{ path('app_register_form', {agree: uniqueId}) }}"><img src="{{ asset('images/bt_agree_off.gif') }}" width="196" height="40" alt="同意する" /></a></li>
+                        <li><a href="/dtox/"><img src="{{ asset('images/bt_disagree_off.gif') }}" width="196" height="40" alt="同意しない" /></a></li>
+                    </ul>
+
+                </div><!-- end.div reg_block -->
+            </div><!-- end.div section -->
+        </div><!-- end.div article -->
+
+        {% include 'frontend/go_top.html.twig' %}
+
+    </div><!-- end.div cont_inn -->
+</div><!-- end.div content -->
+{% endblock %}

@@ -1,0 +1,5 @@
+gregwar_captcha:
+  width: 160
+  height: 50
+  length: 5
+  invalid_message: '無効な値です。'

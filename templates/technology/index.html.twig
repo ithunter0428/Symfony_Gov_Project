@@ -1,0 +1,78 @@
+{% extends 'frontend/base.html.twig' %}
+{% set nav_current = 'member' %}
+{% set lnav_current = 'technology_search' %}
+
+{% block title %}技術検索{% endblock %}
+
+{% block body %}
+<div class="title_bk">
+    <div id="title" class="title">
+        <h2><img src="{{ asset('images/techSearch_title.png') }}" width="980" height="45" alt="技術検索" class="pngfix" /></h2>
+    </div>
+</div>
+
+<div id="content">
+    <div class="cont_inn">
+
+        {% set topicPath = {'/member':'会員向けページ', '/':'技術検索', '':'技術検索結果一覧'} %}
+        {% include 'frontend/topic_path.html.twig' %}
+        
+        <div class="article">
+            <div class="subtitle_block">
+                <h3 class="subtitle">{{ referenceId }}　</h3>
+                <ul class="mem_backLink">
+                    <!-- <li><a href="#">技術検索に戻る</a></li> -->
+                    <li><a href="<?php echo url_for('technology_list', $searchQeuery) ?>">技術検索結果一覧に戻る</a></li>
+                    <?php $aboutRouteName = $tech->isEnglish() ? 'technology_about_en' : 'technology_about'; ?>
+                    <li><a href="<?php echo url_for($aboutRouteName) ?>">技術項目の説明を参照する</a></li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <div class="mem_uiblock">
+
+                    <ul class="mem_tab">
+                      <?php if ($tech->isEnglish()): ?>
+                        <?php if ($tech->getJapaneseVersion()->isActive()): ?>
+                        <li><a href="<?php echo url_for('technology', array('id' => $tech->getJapaneseVersion()->getReferenceId()) + $searchQeuery) ?>"><img src="{{ asset('images/bt_jp_off.gif') }}" width="153" height="42" alt="日本語" /></a></li>
+                        <?php endif; ?>
+                        <li><img src="{{ asset('images/bt_en_on.gif') }}" width="153" height="42" alt="English" /></li>
+                      <?php else: ?>
+                        <li><img src="{{ asset('images/bt_jp_on.gif') }}" width="153" height="42" alt="日本語" /></li>
+                        <?php if ($tech->hasEnglishVersion() && $tech->getEnglishVersion()->isActive()): ?>
+                        <li><a href="<?php echo url_for('technology', array('id' => $tech->getEnglishVersion()->getReferenceId()) + $searchQeuery) ?>"><img src="{{ asset('images/bt_en_off.gif') }}" width="153" height="42" alt="English" /></a></li>
+                        <?php endif; ?>
+                      <?php endif; ?>
+                    </ul>
+
+                    <ul class="mem_rUI">
+                        <li><a href="javascript:void(0);" class="button_print"><img src="{{ asset('images/icon_print_off.gif') }}" width="60" height="35" alt="印刷" /></a></li>
+                        <li><a href="<?php echo url_for('technology_csv', array('id' => $tech->getReferenceId())) ?>"><img src="{{ asset('images/icon_csv_off.gif') }}" width="92" height="35" alt="CSV出力" /></a></li>
+                    </ul>
+                </div><!--end div.mem_uiblock -->
+
+                <?php
+                $partialName = $tech->isEnglish() ? 'index_data_en' : 'index_data';
+                include_partial($partialName, array(
+                  'tech' => $tech, 'sceneMaster' => $sceneMaster, 'objectMaster' => $objectMaster, 'meansMaster' => $meansMaster))
+                ?>
+
+            </div><!-- end.div section -->
+
+
+        </div><!-- end.div article -->
+
+        {% include 'frontend/go_top.html.twig' %}
+
+    </div><!-- end.div cont_inn -->
+</div><!-- end.div content -->
+<script type="text/javascript">
+// <![CDATA[
+window.onload = function() {
+  $('.button_print').click(function(){
+    window.print();
+  });
+};
+// ]]>
+</script>
+{% endblock %}

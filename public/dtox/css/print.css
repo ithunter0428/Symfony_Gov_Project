@@ -1,0 +1,26 @@
+body {
+width:100% !important;
+margin:0 !important;
+padding:0 !important;
+line-height: 1.1;
+word-spacing:1.1pt;
+letter-spacing:0.2pt;
+font-family: "ＭＳ ゴシック", "MS Gothic", "Osaka－等幅", Osaka-mono, monospace;
+color: #000;
+background: none;
+font-size: 10pt!important;
+}
+
+#wrapper{ width:100%;}
+
+#head, #nav, #lnav, .bc, .title_bk, .mem_backLink, .goTop, #foot{display:none;}
+
+
+table { margin: 1px; text-align:left; }
+th { border-bottom: 1px solid #333;  font-weight: bold; }
+td { border-bottom: 1px solid #333; }
+th,td { padding: 4px 10px 4px 0; }
+tfoot { font-style: italic; }
+caption { background: #fff; margin-bottom:2em; text-align:left; }
+thead {display: table-header-group;}
+tr {page-break-inside: avoid;}

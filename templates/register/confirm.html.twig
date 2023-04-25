@@ -1,0 +1,95 @@
+{% extends 'frontend/base.html.twig' %}
+{% set nav_current = '' %}
+{% set lnav_current = '' %}
+
+{% block title %}会員登録{% endblock %}
+
+{% block body %}
+<div class="title_bk">
+    <div id="title" class="title">
+        <h2><img src="{{ asset('images/reg_title.png') }}" width="980" height="45" alt="会員登録" class="pngfix" /></h2>
+    </div>
+</div>
+
+<div id="content">
+    <div class="cont_inn">
+
+        {% set topicPath = {'/dtox/register':'会員登録', '':'STEP3  登録情報の確認'} %}
+        {% include 'frontend/topic_path.html.twig' %}
+
+        <div class="article">
+            <div class="subtitle_block">
+                <h3 class="subtitle">STEP3  登録情報の確認</h3>
+            </div>
+            <div class="section">
+                <div class="reg_block">
+                    <h4 class="reg_title reg_step3"><span>STEP3  登録情報の確認</span></h4>
+                    <table class="reg_ftb">
+                        <tr>
+                            <th>{{ form_label(form.name) }}<span class="att">（必須）</span></th>
+                            <td>{{ values.name }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ form_label(form.affiliation_category) }}・{{ form_label(form.business_category) }}<span class="att">（必須）</span></th>
+                            <td>
+                              {{ form_label(form.affiliation_category) }}：{{ attribute(affiliationCategoryOption, values.affiliationCategory) }}
+                              {% if values.businessCategory %}
+                              <br />
+                              {{ form_label(form.business_category) }}：{{ attribute(businessCategoryOption, values.businessCategory) }}
+                              {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{{ form_label(form.affiliation) }}<span class="att">（必須）</span></th>
+                            <td>{{ values.affiliation }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ form_label(form.email) }}<span class="att">（必須）</span></th>
+                            <td>{{ values.email }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ form_label(form.password) }}<span class="att">（必須）</span></th>
+                            <td>{{ password }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ form_label(form.secretQuestion) }}<span class="att">（必須）</span></th>
+                            <td>{{ attribute(secretQuestionOption, values.secretQuestion) }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ form_label(form.secretAnswer) }}<span class="att">（必須）</span></th>
+                            <td>{{ secretAnswer }}</td>
+                        </tr>
+                        <tr>
+                            <th>ご質問<span class="att">（必須）</span></th>
+                            <td>
+                                あなた（所属部署を含む）は除染事業、中間貯蔵関連事業を実施していますか？（実施予定も含む）
+                                <ul class="r_radioH">
+                                    <li>{% if questionnaireAnswer.q01 == 1 %}はい{% else %}いいえ{% endif %}</li>
+                                </ul>
+                                あなた（所属部署を含む）は 新しい除染技術、新しい中間貯蔵関連技術を保有していますか？（研究開発中も含む）
+                                <ul class="r_radioH">
+                                    <li>{% if questionnaireAnswer.q02 == 1 %}はい{% else %}いいえ{% endif %}</li>
+                                </ul>
+                                このサイトからのメールを受け取りますか？※
+                                <ul class="r_radioH">
+                                    <li>{% if values.isReceiveMail == 1 %}はい{% else %}いいえ{% endif %}</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </table><!-- end.div reg_ftb -->
+
+                    <ul class="reg_fbt">
+                        <li><a href="{{ path('app_register_mail') }}"><img src="{{ asset('images/bt_reg_off.gif') }}" width="216" height="40" alt="登録" /></a></li>
+                        <li><a href="{{ path('app_register_form', {back: 'confirm'}) }}"><img src="{{ asset('images/bt_back_off.gif') }}" width="216" height="40" alt="戻る" /></a></li>
+                    </ul>
+
+                </div><!-- end.div reg_block -->
+            </div><!-- end.div section -->
+        </div><!-- end.div article -->
+
+
+        {% include 'frontend/go_top.html.twig' %}
+
+    </div><!-- end.div cont_inn -->
+</div><!-- end.div content -->
+{% endblock %}

@@ -1,0 +1,14 @@
+<div class="bc">
+    <ul>
+        <li><a href="/dtox/">ホーム</a></li>
+        <li>&gt;</li>
+{% for key, value in topicPath %}
+{% if loop.length != loop.index %}
+        <li><a href="{{ key }}">{{ value }}</a></li>
+        <li>&gt;</li>
+{% else %}
+        <li>{{ value }}</li>
+{% endif %}
+{% endfor %}
+    </ul>
+</div>

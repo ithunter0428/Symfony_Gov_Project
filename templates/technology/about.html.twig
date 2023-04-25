@@ -1,0 +1,35 @@
+{% extends 'frontend/base.html.twig' %}
+{% set nav_current = 'member' %}
+{% set lnav_current = 'technology_search' %}
+
+{% block title %}技術項目の説明{% endblock %}
+
+{% block body %}
+<div class="title_bk">
+    <div id="title" class="title">
+        <h2><img src="{{ asset('images/techSearch_title.png') }}" width="980" height="45" alt="技術検索" class="pngfix" /></h2>
+    </div>
+</div>
+
+<div id="content">
+    <div class="cont_inn">
+
+        {% set topicPath = {'/member':'会員向けページ', '':'技術項目の説明'} %}
+        {% include 'frontend/topic_path.html.twig' %}
+
+        <div class="article">
+            <div class="subtitle_block">
+                <h3 class="subtitle">技術項目の説明</h3>
+            </div>
+            {% if lang == 'jp' %}
+            {% include 'technology/_about_jp.html.twig' %}
+            {% else %}
+            {% include 'technology/_about_en.html.twig' %}
+            {% endif %}
+        </div><!-- end.div article -->
+
+        {% include 'frontend/go_top.html.twig' %}
+
+    </div><!-- end.div cont_inn -->
+</div><!-- end.div content -->
+{% endblock %}

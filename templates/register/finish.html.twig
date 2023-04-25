@@ -1,0 +1,43 @@
+{% extends 'frontend/base.html.twig' %}
+{% set nav_current = '' %}
+{% set lnav_current = '' %}
+
+{% block title %}会員登録{% endblock %}
+
+{% block body %}
+<div class="title_bk">
+    <div id="title" class="title">
+        <h2><img src="{{ asset('images/reg_title.png') }}" width="980" height="45" alt="会員登録" class="pngfix" /></h2>
+    </div>
+</div>
+
+<div id="content">
+    <div class="cont_inn">
+
+        {% set topicPath = {'/dtox/register':'会員登録', '':'STEP5  登録完了'} %}
+        {% include 'frontend/topic_path.html.twig' %}
+
+        <div class="article">
+            <div class="subtitle_block">
+                <h3 class="subtitle">STEP5  登録完了</h3>
+            </div>
+            <div class="section">
+                <div class="reg_block">
+                    <h4 class="reg_title reg_step5"><span>STEP5  登録完了</span></h4>
+                    <div class="reg_policy">
+                        <table class="reg_center">
+                            <tr>
+                                <td><p>会員登録が完了しました。引き続き、会員向けページを閲覧いただけます。</p></td>
+                            </tr>
+                        </table>
+
+                    </div><!-- end.div reg_policy -->
+                </div><!-- end.div reg_block -->
+            </div><!-- end.div section -->
+        </div><!-- end.div article -->
+
+        {% include 'frontend/go_top.html.twig' %}
+
+    </div><!-- end.div cont_inn -->
+</div><!-- end.div content -->
+{% endblock %}

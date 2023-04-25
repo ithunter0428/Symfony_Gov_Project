@@ -1,0 +1,36 @@
+{% extends 'frontend/base.html.twig' %}
+{% set nav_current = '' %}
+{% set lnav_current = '' %}
+
+{% block title %}お問い合わせ{% endblock %}
+
+{% block body %}
+<div class="title_bk">
+    <div id="title" class="title">
+        <h2><img src="{{ asset('images/contact_title.png') }}" width="980" height="45" alt="お問い合わせ" class="pngfix" /></h2>
+    </div>
+</div>
+
+<div id="content">
+    <div class="cont_inn">
+
+        {% set topicPath = {'':'お問い合わせ'} %}
+        {% include 'frontend/topic_path.html.twig' %}
+
+        <div class="article">
+            <div class="subtitle_block">
+                <h3 class="subtitle">お問い合わせ</h3>
+            </div>
+            <div class="section">
+
+                <p>サイト全般に関するお問い合わせは、以下の電子メールアドレスにお願いいたします。</p>
+                {% set mail = 'dtox@jesconet.co.jp' %}
+                <p>電子メール：<a href="mailto:{{ mail }}">{{ mail }}</a></p>
+            </div><!-- end.div section -->
+        </div><!-- end.div article -->
+
+        {% include 'frontend/go_top.html.twig' %}
+
+    </div><!-- end.div cont_inn -->
+</div><!-- end.div content -->
+{% endblock %}

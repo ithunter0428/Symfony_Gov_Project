@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta name="title" content="お問い合わせ｜除染技術探索サイト：環境省" />
+<title>{% block title %}{% endblock %}｜除染技術探索サイト：環境省</title>
+<link rel="stylesheet" type="text/css" media="all" href="{{ asset('css/styles.css') }}" />
+<script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
+</head>
+<body>
+<div id="wrapper" class="next">{# // トップページはWP側なので下層のクラスで固定 #}
+
+{% include 'frontend/header.html.twig' %}
+{% include 'frontend/navigation.html.twig' %}
+
+{% block body %}{% endblock %}
+
+{% include 'frontend/footer.html.twig' %}
+
+</div><!-- end.div wrapper -->
+
+<script type="text/javascript" src="{{ asset('js/smartRollover.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/jquery.cookie.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/jquery.fontsizechange.js') }}"></script>
+
+<!--[if lt IE 7]>
+<script type="text/javascript" src="{{ asset('js/jquery.belatedPNG.js') }}"></script>
+<script type="text/javascript">
+(function($) {
+    $(function() {
+        $('.pngfix').fixPng();
+    });
+})(jQuery);
+</script>
+<![endif]-->
+</body>
+</html>

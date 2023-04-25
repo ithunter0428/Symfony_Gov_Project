@@ -1,0 +1,56 @@
+{% extends 'frontend/base.html.twig' %}
+{% set nav_current = '' %}
+{% set lnav_current = '' %}
+
+{% block title %}ログイン{% endblock %}
+
+{% block body %}
+<div class="title_bk">
+    <div id="title" class="title">
+        <h2><img src="{{ asset('images/mem_title.png') }}" width="980" height="45" alt="会員向けページ" class="pngfix" /></h2>
+    </div>
+</div>
+
+<div id="content">
+    <div class="cont_inn">
+
+        {% set topicPath = {'/dtox/register':'会員登録', '':'会員向けページ'} %}
+        {% include 'frontend/topic_path.html.twig' %}
+
+        <div class="article">
+            <div class="subtitle_block">
+                <h3 class="subtitle">会員ログイン</h3>
+            </div>
+            <div class="section">
+                <p>会員向けページを閲覧するためには、ログインが必要です。</p>
+                <div class="mem_login">
+                    <form action="<?php url_for('login') ?>" method="post">
+                        <input type="hidden" name="ref" value="login" />
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                        <ul>
+                            <li class="user"><img src="{{ asset('images/icon_loginUse.gif') }}" width="20" height="20" alt="<?php echo $form['email']->renderLabelName() ?>" /><?php echo $form['email']->renderLabelName() ?></li>
+                            <li>
+                                <?php echo $form['email']->render(array('size' => '40')) ?>
+                                <?php echo $form['email']->renderError() ?>
+                            </li>
+                            <li class="password"><img src="{{ asset('images/icon_pass.gif') }}" width="20" height="20" alt="<?php echo $form['password']->renderLabelName() ?>" /><?php echo $form['password']->renderLabelName() ?></li>
+                            <li>
+                                <?php echo $form['password']->render(array('size' => '40')) ?>
+                                <?php echo $form['password']->renderError() ?>
+                            </li>
+                            <li class="bt"><input type="image" src="{{ asset('images/bt_login_off.gif') }}" alt="ログイン" /></li>
+                        </ul>
+                    </form>
+                    <ul class="link">
+                        <li><a href="{{ path('app_register') }}">&#9658;会員登録（無料）はこちら</a></li>
+                        <li><a href="{{ path('app_password') }}">&#9658;パスワードを忘れた方はこちら</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div><!-- end.div article -->
+
+        <?php include_partial('global/go_top') ?>
+
+    </div><!-- end.div cont_inn -->
+</div><!-- end.div content -->
+{% endblock %}

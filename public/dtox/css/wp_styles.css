@@ -1,0 +1,20 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* Rayout ----------------------------------------------------------------- */
+body{
+	text-align: left;
+}
+
+.top_bk{height:350px;}
+.next.title_bk{height:150px;}
+	
+.next.title_bk .title h2{
+	padding:34px 0 0 0;
+}
+
+/* foot ------------------------------------------------------------ */
+.centerArea{
+	width:980px;
+	margin:0 auto;
+}

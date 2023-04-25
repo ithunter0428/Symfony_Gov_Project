@@ -1,0 +1,169 @@
+{% extends 'frontend/base.html.twig' %}
+{% set nav_current = '' %}
+{% set lnav_current = '' %}
+
+{% block title %}会員登録{% endblock %}
+
+{% block body %}
+<div class="title_bk">
+  <div id="title" class="title">
+        <h2><img src="{{ asset('images/reg_title.png') }}" width="980" height="45" alt="会員登録" class="pngfix" /></h2>
+    </div>
+</div>
+
+<div id="content">
+    <div class="cont_inn">
+
+        {% set topicPath = {'/dtox/register':'会員登録', '':'STEP2 登録情報の入力'} %}
+        {% include 'frontend/topic_path.html.twig' %}
+
+        <div class="article">
+            <div class="subtitle_block">
+                <h3 class="subtitle">STEP2  登録情報の入力</h3>
+            </div>
+            <div class="section">
+                <div class="reg_block">
+                    <h4 class="reg_title reg_step2"><span>STEP2  登録情報の入力</span></h4>
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+                        <table class="reg_ftb">
+                            <tr>
+                                <th>{{ form_label(form.name) }}<span class="att">（必須）</span></th>
+                                <td>
+                                    {{ form_widget(form.name, {'attr': {'size': 40}, 'value': 'Default title'}) }}
+                                    {{ form_errors(form.name) }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{{ form_label(form.affiliation_category) }}・{{ form_label(form.business_category) }}<span class="att">（必須）</span></th>
+                                <td>
+                                    {{ form_widget(form.affiliation_category, {'attr': {'class': 'mrgR'}}) }}
+                                    {{ form_widget(form.business_category, {'attr': {'style': 'display: none;'}}) }}
+                                    {{ form_errors(form.affiliation_category) }}
+                                    {{ form_errors(form.business_category) }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{{ form_label(form.affiliation) }}<span class="att">（必須）</span></th>
+                                <td>
+                                    {{ form_widget(form.affiliation, {'attr': {'size': 40}}) }}
+                                    {{ form_errors(form.affiliation) }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{{ form_label(form.email) }}<span class="att">（必須）</span></th>
+                                <td>
+                                  <ul>
+                                      <li>
+                                          {{ form_widget(form.email, {'attr': {'size': 40}}) }}
+                                          {{ form_errors(form.email) }}
+                                      </li>
+                                        {{ form_widget(form.reEmail, {'attr': {'size': 40}}) }}
+                                        {{ form_errors(form.reEmail) }}
+                                      </li>
+                                      <li class="att">メールアドレスがログインIDになります。確認のため2回入力してください。</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{{ form_label(form.password) }}<span class="att">（必須）</span></th>
+                                <td>
+                                  <ul>
+                                      <li>
+                                        {{ form_widget(form.password, {'attr': {'size': 40}}) }}
+                                        {{ form_errors(form.password) }}
+                                      </li>
+                                      <li>
+                                        {{ form_widget(form.rePassword, {'attr': {'size': 40}}) }}
+                                        {{ form_errors(form.rePassword) }}
+                                      </li>
+                                      <li class="att">8文字以上・半角英数記号。確認のため2回入力してください。</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{{ form_label(form.secretQuestion) }}<span class="att">（必須）</span></th>
+                                <td>
+                                    {{ form_widget(form.secretQuestion) }}
+                                    {{ form_errors(form.secretQuestion) }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{{ form_label(form.secretAnswer) }}<span class="att">（必須）</span></th>
+                                <td>
+                                    {{ form_widget(form.secretAnswer, {'attr': {'size': 40}}) }}
+                                    {{ form_errors(form.secretAnswer) }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>ご質問<span class="att">（必須）</span></th>
+                                <td>
+                                    あなた（所属部署を含む）は除染事業、中間貯蔵関連事業を実施していますか？（実施予定も含む）
+                                    <ul class="r_radioH">
+                                      <ul class="radio_list">
+                                        {{ form_widget(form.q01) }}
+                                      </ul>
+                                    </ul>
+                                    {{ form_errors(form.q01) }}
+                                    あなた（所属部署を含む）は 新しい除染技術、新しい中間貯蔵関連技術を保有していますか？（研究開発中も含む）
+                                    <ul class="r_radioH">
+                                      <ul class="radio_list">
+                                        {{ form_widget(form.q02, {'attr': {'value': 1}}) }}
+                                      </ul>
+                                    </ul>
+                                    {{ form_errors(form.q02) }}
+                                    このサイトからのメールを受け取りますか？※
+                                    <ul class="r_radioH">
+                                      <ul class="radio_list">
+                                        {{ form_widget(form.isReceiveMail) }}
+                                      </ul>
+                                    </ul>
+                                    {{ form_errors(form.isReceiveMail) }}
+                                    <p class="att">※事務局から新着情報等のお知らせをメールで発信することがあります。<br />メールの受信を希望される方は、チェックを入れてください。</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>セキュリティコードの入力<br /><span class="att">（必須）</span></th>
+                                <td>
+                                  <?php echo $form['captcha']->render(array('size' => '40')) ?>
+                                  <?php echo $form['captcha']->renderError() ?>
+                                  {% block captcha_widget %}
+                                  {{ form_widget(form.captcha) }}
+                                  {% endblock %}
+                                </td>
+                            </tr>
+                        </table><!-- end.div reg_ftb -->
+
+                        <ul class="reg_fbt">
+                            <li><input type="image" src="{{ asset('images/bt_confirm_off.gif') }}" alt="登録内容を確認" /></li>
+                        </ul>
+{{ form_end(form) }}
+
+                </div><!-- end.div reg_block -->
+            </div><!-- end.div section -->
+        </div><!-- end.div article -->
+
+        {% include 'frontend/go_top.html.twig' %}
+
+    </div><!-- end.div cont_inn -->
+</div><!-- end.div content -->
+<script type="text/javascript">
+// <![CDATA[
+window.onload = function() {
+  businessCategoryShowChenge($('#{{ form.affiliation_category.vars.id }}').val());
+
+  $('#{{ form.affiliation_category.vars.id }}').change(function(){
+    businessCategoryShowChenge($(this).val());
+  });
+
+  function businessCategoryShowChenge(affiliationCategory) {
+    var obj = $('#{{ form.business_category.vars.id }}');
+    if ('1' == affiliationCategory) {
+      obj.show();
+    } else {
+      obj.hide();
+    }
+  }
+};
+// ]]>
+</script>
+{% endblock %}

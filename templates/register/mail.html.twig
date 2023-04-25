@@ -1,0 +1,47 @@
+{% extends 'frontend/base.html.twig' %}
+{% set nav_current = '' %}
+{% set lnav_current = '' %}
+
+{% block title %}会員登録{% endblock %}
+
+{% block body %}
+<div class="title_bk">
+  <div id="title" class="title">
+        <h2><img src="{{ asset('images/reg_title.png') }}" width="980" height="45" alt="会員登録" class="pngfix" /></h2>
+    </div>
+</div>
+
+<div id="content">
+    <div class="cont_inn">
+
+        {% set topicPath = {'/dtox/register':'会員登録', '':'STEP4  メールの確認'} %}
+        {% include 'frontend/topic_path.html.twig' %}
+
+        <div class="article">
+            <div class="subtitle_block">
+                <h3 class="subtitle">STEP4  メールの確認</h3>
+            </div>
+            <div class="section">
+                <div class="reg_block">
+                <h4 class="reg_title reg_step4"><span>STEP4  メールの確認</span></h4>
+                    <div class="reg_policy">
+
+                        <table class="reg_center">
+                            <tr>
+                                <td>
+<p>ご登録いただいたメールアドレスに確認用URLを送付しました。<br />会員登録の手続きを完了するために、{{ validHour }}時間以内に確認用URLにアクセスいただく必要があります。</p>
+<p>なお、{{ validHour }}時間を経過すると、ご入力いただいた情報は消去され、<br />再度STEP1から手続きしていただくこととなりますのでご注意ください。</p>
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div><!-- end.div reg_policy -->
+                </div><!-- end.div reg_block -->
+            </div><!-- end.div section -->
+        </div><!-- end.div article -->
+
+        {% include 'frontend/go_top.html.twig' %}
+
+    </div><!-- end.div cont_inn -->
+</div><!-- end.div content -->
+{% endblock %}

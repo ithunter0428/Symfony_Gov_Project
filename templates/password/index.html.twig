@@ -1,0 +1,83 @@
+
+{% extends 'frontend/base.html.twig' %}
+{% set nav_current = '' %}
+{% set lnav_current = '' %}
+
+{% block title %}パスワードを忘れた方へ{% endblock %}
+
+{% block body %}
+<div class="title_bk">
+    <div id="title" class="title">
+        <h2><img src="{{ asset('images/reset_title.png') }}" width="980" height="45" alt="パスワードを忘れた方へ" class="pngfix" /></h2>
+    </div>
+</div>
+
+<div id="content">
+    <div class="cont_inn">
+
+        {% set topicPath = {'':'パスワードを忘れた方へ'} %}
+        {% include 'frontend/topic_path.html.twig' %}
+
+        <div class="article">
+            <div class="subtitle_block">
+                <h3 class="subtitle">パスワードを忘れた方へ</h3>
+            </div>
+            <div class="section">
+    <p>パスワードをお忘れの方は、以下からパスワードを再設定いただけます。<br />
+    本人確認のため、会員登録時にご登録いただいたメールアドレスと秘密の質問とその答えも入力してください。</p>
+                <div class="reg_block">
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+                        <table class="reg_ftb">
+                            <tr>
+                                <th>{{ form_label(form.email) }}<span class="att">（必須）</span></th>
+                                <td>
+                                    <ul>
+                                        <li>{{ form_widget(form.email, {'attr': {'size': 40}}) }}
+                                           {{ form_errors(form.email) }}</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{{ form_label(form.secretQuestion) }}<span class="att">（必須）</span></th>
+                                <td>
+                                    {{ form_widget(form.secretQuestion) }}
+                                    {{ form_errors(form.secretQuestion) }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{{ form_label(form.secretAnswer) }}<span class="att">（必須）</span></th>
+                                <td>
+                                    <ul>
+                                        <li>{{ form_widget(form.secretAnswer, {'attr': {'size': 40}}) }}
+                                          {{ form_errors(form.secretAnswer) }}</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{{ form_label(form.password) }}<span class="att">（必須）</span></th>
+                                <td>
+                                    <ul>
+                                        <li>{{ form_widget(form.password, {'attr': {'size': 40}}) }}
+                                          {{ form_errors(form.password) }}</li>
+                                        <li>{{ form_widget(form.rePassword, {'attr': {'size': 40}}) }}
+                                          {{ form_errors(form.rePassword) }}</li>
+                                        <li class="att">8文字以上・半角英数記号。確認のため2回入力してください。</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </table><!-- end.div reg_ftb -->
+
+                        <ul class="reg_fbt">
+                            <li><input type="image" src="{{ asset('images/bt_send_off.gif') }}" alt="送信" /></li>
+                        </ul>
+{{ form_end(form) }}
+                </div><!-- end.div reg_block -->
+
+            </div><!-- end.div section -->
+        </div><!-- end.div article -->
+
+        {% include 'frontend/go_top.html.twig' %}
+
+    </div><!-- end.div cont_inn -->
+</div><!-- end.div content -->
+{% endblock %}
